@@ -27,7 +27,6 @@ def download_image(url):
 # Fonction pour la page propreté
 def page_proprete():
     st.title("🧹 Propreté")
-    st.write("Sur cette page, vous pouvez gérer et visualiser les informations liées à la propreté.")
 
     # Filtrer les données
     conforme = df[df[df.columns[-2]] == "Conforme"]
@@ -82,7 +81,6 @@ def page_proprete():
 # Fonction pour la page esthétique
 def page_esthetique():
     st.title("🎨 Esthétique")
-    st.write("Visualisez les éléments liés à l'esthétique des boîtes aux lettres ici.")
 
     # Filtrer les données
     conforme = df[df[df.columns[-1]] == "Conforme"]
@@ -138,7 +136,6 @@ def page_esthetique():
 def page_harmonisation():
     st.title("🔖 Harmonisation des Étiquettes")
 
-    st.write("Affichage des images conformes et non conformes.")
 
     # Filtrer les données
     conforme = df[df[df.columns[-3]] == "Conforme"]
