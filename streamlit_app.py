@@ -11,22 +11,18 @@ st.set_page_config(
     layout="wide"
 )
 
-export=pd.read_excel("Export.xlsx")
-export_bal=export[['Date contrôle', 'Numéro rue', 'Rue', 'CP', 'Ville', 'Secteur',export.columns[54],export.columns[55],export.columns[56],export.columns[57],export.columns[58]]]
-export_bal["Adresse"]=export_bal["Rue"]+" - "+export_bal["CP"].astype(str) +" - "+export_bal["Ville"]+ " - ("+export_bal["Secteur"]+")"
-df_glob=pd.read_excel("resultats_scraping.xlsx")
-df_bal=df_glob[df_glob["Question"]=="Etat des boîtes aux lettres :"]
+df=pd.read_excel("conforme_nonconforme.xlsx")
 
-df = pd.merge(df_bal, export_bal, on="Adresse", how="inner")
 # Fonction pour télécharger une image à partir d'une URL
 def download_image(url):
     response = requests.get(url)
-    return Image.open(BytesIO(response.content))
+    return Image.open(BytesIO(response.content)) 
 
 
 # Fonction pour la page propreté
 def page_proprete():
     st.title("🧹 Propreté")
+    st.write("Sur cette page, vous pouvez gérer et visualiser les informations liées à la propreté.")
 
     # Filtrer les données
     conforme = df[df[df.columns[-2]] == "Conforme"]
@@ -81,6 +77,7 @@ def page_proprete():
 # Fonction pour la page esthétique
 def page_esthetique():
     st.title("🎨 Esthétique")
+    st.write("Visualisez les éléments liés à l'esthétique des boîtes aux lettres ici.")
 
     # Filtrer les données
     conforme = df[df[df.columns[-1]] == "Conforme"]
@@ -136,6 +133,7 @@ def page_esthetique():
 def page_harmonisation():
     st.title("🔖 Harmonisation des Étiquettes")
 
+    st.write("Affichage des images conformes et non conformes.")
 
     # Filtrer les données
     conforme = df[df[df.columns[-3]] == "Conforme"]
